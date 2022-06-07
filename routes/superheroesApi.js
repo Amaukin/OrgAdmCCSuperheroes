@@ -8,7 +8,6 @@ const SUPERHEROE_ELIMINADO = 'Se ha eliminado al superheroe';
 const SUPERHEROE_NO_EXISTE = 'No se ha encontrado el superheroe';
 const SUPERHEROE_YA_EXISTE = 'Ese superheroe ya está registrado';
 
-// BORRA ESTE COMMENT Y LO SUBE JOSFER
 /* GET superheroes listing. */
 router.get('/', function(req, res, next) {
   Superheroe.find({}, function(err, superheroes) {
@@ -16,10 +15,8 @@ router.get('/', function(req, res, next) {
   })
 });
 
-// BORRA ESTE COMMENT Y LO SUBE DANIEL
 /* POST superheroe. */
 router.post('/', async function (req, res, next) {
-  console.log('heroe', req);
   var nombreHeroe = req.body.nombre;
   var nombreHeroeUpper = nombreHeroe.toUpperCase();
   const superheroeEncontrado = await Superheroe.findOne({ nombre: nombreHeroeUpper });
@@ -47,7 +44,6 @@ router.post('/', async function (req, res, next) {
   }
 });
 
-// BORRA ESTE COMMENT Y LO SUBE MANUEL
 /* PATCH superheroe to update. */
 router.patch('/:id', async function (req, res, next) {
   var superheroeId = req.params.id;
@@ -68,12 +64,9 @@ router.patch('/:id', async function (req, res, next) {
   }
 });
 
-// BORRA ESTE COMMENT Y LO SUBE EFRAIN
 /* PATCH superheroe to update. */
 router.post('/:id', async function (req, res, next) {
-  console.log('vava', req.query);
   if (req.query.isDelete) {
-    console.log('se eliminaría');
     Superheroe.findByIdAndDelete(req.params.id, (err) => {
       if (err) {
         res.send(500, ERROR_ENCONTRADO + err);
@@ -83,7 +76,6 @@ router.post('/:id', async function (req, res, next) {
     })
   } else if (req.query.isEdit) {
     var superheroeEditado = await Superheroe.findOne({ _id: req.params.id });
-    console.log('encontrado', superheroeEditado);
     req.body = sanitizarSuperheroe(req.body);
     superheroeEditado.nombre = req.body.nombre;
     superheroeEditado.alineacion = req.body.alineacion;
@@ -101,7 +93,6 @@ router.post('/:id', async function (req, res, next) {
   }
 });
 
-// BORRA ESTE COMMENT Y LO SUBE EFRAIN
 /* Delete superheroe. */
 router.delete('/:id', async function (req, res, next) {
   Superheroe.findByIdAndDelete(req.body.id, (err) =>{
@@ -113,6 +104,11 @@ router.delete('/:id', async function (req, res, next) {
   })
 });
 
+/**
+ * @description Sanitiza el body para eliminar atributos invalidos
+ * @param {body} reqBody body del query
+ * @returns body sanitizado
+ */
 function sanitizarSuperheroe(reqBody) {
   if (reqBody.equipo === '') delete reqBody.equipo;
   var superpoderesNull = true 
