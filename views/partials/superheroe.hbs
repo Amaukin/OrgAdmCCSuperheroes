@@ -1,0 +1,20 @@
+{{#each this}}
+    <div class="col-sm d-flex justify-content-center">
+        <div {{#ifCond this.alineacion 'HEROE'}} class="card border-primary mb-4" {{/ifCond}}
+            {{#ifCond this.alineacion 'VILLANO'}} class="card border-secondary mb-4" {{/ifCond}}
+            {{#ifCond this.alineacion 'ANTIHEROE'}} class="card border-warning mb-4" {{/ifCond}}
+            style="max-width: 18rem; min-width:18rem">
+            <img class="card-img-top" style="height: 10rem" src="{{this.imagen}}"
+                onerror="this.src='https://www.kindpng.com/picc/m/52-526072_unknown-character-hd-png-download.png'">
+            <div {{#ifCond this.alineacion 'HEROE'}} class="card-body text-primary" {{/ifCond}}
+                {{#ifCond this.alineacion 'VILLANO'}} class="card-body text-secondary" {{/ifCond}}
+                {{#ifCond this.alineacion 'ANTIHEROE'}} class="card-body text-warning" {{/ifCond}}>
+                <h5 class="card-title text-center">{{this.nombre}}</h5>
+                <p class="card-subtitle text-xl-right text-light">{{this.alineacion}}</p>
+            </div>
+            <div class="card-footer text-right">
+                <a href="/superheroes/{{this._id}}" class="btn btn-primary">Detalles</a>
+            </div>
+        </div>
+    </div>
+{{/each}}
