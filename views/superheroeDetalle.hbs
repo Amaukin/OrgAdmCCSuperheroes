@@ -1,0 +1,87 @@
+<div class="d-flex flex-column">
+    <div class="display-4 text-center">{{superheroe.nombre}}</div>
+    <h5 class="text-center mb-5 text-light">{{superheroe.alineacion}}</h5>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col">
+            <img class="card-img-top" src="{{superheroe.imagen}}"
+                onerror="this.src='https://www.kindpng.com/picc/m/52-526072_unknown-character-hd-png-download.png'">
+        </div>
+        <div class="container col align-self-center">
+            {{#if superheroe.superpoderes}}
+                <div class="row">
+                    <div {{#ifCond superheroe.alineacion 'HEROE'}} class="card col border-primary"{{/ifCond}}
+                        {{#ifCond superheroe.alineacion 'VILLANO'}} class="card col border-secondary"{{/ifCond}}
+                        {{#ifCond superheroe.alineacion 'ANTIHEROE'}} class="card col border-warning"{{/ifCond}}>
+                        <div class="d-flex flex-column">
+                            <h3 class="my-3">Superpoderes</h3>
+                            {{#each superheroe.superpoderes}}
+                                <div>
+                                    <h5>
+                                        <span class="badge badge-light">{{this}}</span>
+                                    </h5>
+                                </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if superheroe.equipo}}
+                <div class="row">
+                    <div {{#ifCond superheroe.alineacion 'HEROE' }} class="card col border-primary" {{/ifCond}} {{#ifCond
+                        superheroe.alineacion 'VILLANO' }} class="card col border-secondary" {{/ifCond}} {{#ifCond
+                        superheroe.alineacion 'ANTIHEROE' }} class="card col border-warning" {{/ifCond}}>
+                        <div class="d-flex flex-column">
+                            <h3 class="my-3">{{superheroe.equipo}}</h3>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if superheroe.franquicia}}
+                <div class="row">
+                    <div {{#ifCond superheroe.alineacion 'HEROE' }} class="card col border-primary" {{/ifCond}} {{#ifCond
+                        superheroe.alineacion 'VILLANO' }} class="card col border-secondary" {{/ifCond}} {{#ifCond
+                        superheroe.alineacion 'ANTIHEROE' }} class="card col border-warning" {{/ifCond}}>
+                        <div class="d-flex flex-column">
+                            <h3 class="my-3">{{superheroe.franquicia}}</h3>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    <div class="text-right">
+        <a href="/superheroes/editar-superheroe/{{superheroe._id}}" class="btn btn-primary">Editar</a>
+        <!-- Boton modal -->
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogoConfirmacion">
+            Eliminar
+        </button>
+        
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="dialogoConfirmacion" tabindex="-1" role="dialog" aria-labelledby="dialogoConfirmacionLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dialogoConfirmacionLabel">Eliminar a {{superheroe.nombre}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Estás a punto de eliminar a {{superheroe.nombre}}, <br> ¿Confirmar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                <form action="http://localhost:3000/api/{{superheroe._id}}?isDelete=true" method="post">
+                    <button id="boton-eliminar" type="submit"
+                        class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
