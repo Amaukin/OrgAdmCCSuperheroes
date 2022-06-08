@@ -1,0 +1,39 @@
+<div class="nuevo-superheroe-form d-flex flex-row justify-content-center">
+    <form action="http://localhost:3000/api/" method="post" class="text-center">
+    <div class="d-flex flex-row">
+        <div class="mx-3">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="" placeholder="Nombre del superheroe" required>
+            </div>
+            <label for="alineacion">Alineación</label>
+            <select id="alineacion" name="alineacion" value="" class="form-control mb-3" required>
+                <option>HEROE</option>
+                <option>VILLANO</option>
+                <option>ANTIHEROE</option>
+            </select>
+            <div class="form-group">
+                <label for="equipo">Equipo</label>
+                <input type="text" class="form-control" id="equipo" name="equipo" value="" placeholder="Pertenece a...">
+            </div>
+            <div class="form-group">
+                <label for="superpoderes">Superpoderes</label>
+                <input type="text" class="form-control mb-3" id="superpoderes1" name="superpoderes" value="" placeholder="Superpoder 1">
+                <input type="text" class="form-control mb-3" id="superpoderes2" name="superpoderes" value="" placeholder="Superpoder 2">
+                <input type="text" class="form-control mb-3" id="superpoderes3" name="superpoderes" value="" placeholder="Superpoder 3">
+            </div>
+        </div>
+        <div class="mx-3">
+            <div class="form-group">
+                <label for="franquicia">Franquicia</label>
+                <input type="text" class="form-control" id="franquicia" name="franquicia" value="" placeholder="Franquicia">
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="text" class="form-control" id="imagen" name="imagen" value="" placeholder="URL de la imagen">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear superheroe</button>
+    </form>
+</div>
