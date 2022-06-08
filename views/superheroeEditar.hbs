@@ -1,0 +1,48 @@
+<div class="nuevo-superheroe-form d-flex flex-row justify-content-center">
+    <form action="http://localhost:3000/api/{{superheroe._id}}?isEdit=true" method="post" class="text-center">
+    <div class="d-flex flex-row">
+        <div class="mx-3">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre"  
+                    {{#ifCond superheroe.nombre undefined}} value=""
+                    {{else}} value="{{superheroe.nombre}}"{{/ifCond}} placeholder="Nombre del superheroe"  required>
+            </div>
+            <label for="alineacion">Alineación</label>
+            <select id="alineacion" name="alineacion" {{#ifCond superheroe.alineacion undefined}} value=""
+                    {{else}} value="{{superheroe.alineacion}}"{{/ifCond}} class="form-control mb-3" required>
+                <option>HEROE</option>
+                <option>VILLANO</option>
+                <option>ANTIHEROE</option>
+            </select>
+            <div class="form-group">
+                <label for="equipo">Equipo</label>
+                <input type="text" class="form-control" id="equipo" name="equipo" {{#ifCond superheroe.equipo undefined}} value=""
+                    {{else}} value="{{superheroe.equipo}}"{{/ifCond}} placeholder="Pertenece a...">
+            </div>
+            <div class="form-group">
+                <label for="superpoderes">Superpoderes</label>
+                {{#each superheroe.superpoderes}}
+                    <input type="text" class="form-control mb-3" id="superpoderes1" name="superpoderes" {{#ifCond this undefined}} value=""
+                        {{else}} value="{{this}}"{{/ifCond}} placeholder="Superpoder">
+                {{/each}}
+                <input type="text" class="form-control mb-3" id="superpoderes2" name="superpoderes" value="" placeholder="Agregar superpoder...">
+                <input type="text" class="form-control mb-3" id="superpoderes3" name="superpoderes" value="" placeholder="Agregar superpoder...">
+            </div>
+        </div>
+        <div class="mx-3">
+            <div class="form-group">
+                <label for="franquicia">Franquicia</label>
+                <input type="text" class="form-control" id="franquicia" name="franquicia" {{#ifCond superheroe.franquicia undefined}} value=""
+                    {{else}} value="{{superheroe.franquicia}}"{{/ifCond}} placeholder="Franquicia">
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="text" class="form-control" id="imagen" name="imagen" {{#ifCond superheroe.imagen undefined}} value=""
+                    {{else}} value="{{superheroe.imagen}}"{{/ifCond}} placeholder="URL de la imagen">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Editar superheroe</button>
+    </form>
+</div>
